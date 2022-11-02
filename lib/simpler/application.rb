@@ -37,9 +37,9 @@ module Simpler
 
     def not_found
       response = Rack::Response.new(
-        [404,
-         {"Content-Type" => "text/plain"},
-         "Not found"]
+        ["Not found"],
+        404,
+         {"Content-Type" => "text/plain"}
       )
       response.finish
     end

@@ -11,8 +11,24 @@ module Simpler
         @action = action
       end
 
+
+
       def match?(method, path)
-        @method == method && path.match(@path)
+        @method == method && correct_request(path)
+      end
+
+      def correct_request(path)
+        different_path(path) && path =~ path_to_route
+      end
+
+      def different_path(path)
+        requested_path = path.split('/')
+        route_path = @path.split('/')
+        requested_path.count == route_path.count
+      end
+
+      def path_to_route
+        Regexp.new("^#{@path.gsub(/:id/, '\d+')}$")
       end
 
     end

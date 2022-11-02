@@ -12,7 +12,9 @@ class TestsController < Simpler::Controller
   end
 
   def show
+    @test = Test.find(params[:id])
 
+    render plain: "#{@test}"
   end
 
 end
